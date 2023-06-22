@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<title>APITEST_GoogleMap</title>
+
+
+
+<style>
+html { height: 100% }
+body { height: 100% }
+#map { height: 50%; width: 100%}
+</style>
+</head>
+
+<body>
+<div id="map"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNufT76adVw4eqeQnKgaPaBM6t_5_vzYc&language=ja"></script>
+
+<script>
+var MyLatLng = new google.maps.LatLng(35.6811673, 139.7670516);
+var Options = {
+ zoom: 15, 
+ center: MyLatLng, 
+ mapTypeId: 'roadmap' 
+};
+var map = new google.maps.Map(document.getElementById('map'), Options);
+</script>
+
+</body>
+</html>
