@@ -10,17 +10,25 @@
 <style>
 html { height: 100% }
 body { height: 100% }
-#map { height: 50%; width: 100%}
+#map,#pano { height: 50%; width: 100%}
 </style>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.js"></script>
+
+
 </head>
 
 <body>
 <div id="map"></div>
+<div id="pano"></div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNufT76adVw4eqeQnKgaPaBM6t_5_vzYc&language=ja"></script>
 
 <script>
-var MyLatLng = new google.maps.LatLng(35.36187, 139.274612);
+var MyLatLng = new google.maps.LatLng(35.36407, 139.274343);
 var Options = {
  zoom: 15, 
  center: MyLatLng, 
@@ -28,8 +36,35 @@ var Options = {
 };
 var map = new google.maps.Map(document.getElementById('map'), Options);
 
+function initialize() {
+  const fenway = { lat: 35.36407, lng: 139.274343 };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: fenway,
+    zoom: 14,
+  });
+  const panorama = new google.maps.StreetViewPanorama(
+    document.getElementById("pano"),
+    {
+      position: fenway,
+      pov: {
+        heading: 34,
+        pitch: 10,
+      },
+    }
+  );
+
+  map.setStreetView(panorama);
+}
+
+window.initialize = initialize;
 
 </script>
+
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initialize&v=weekly"
+      defer
+    ></script>
+
 
 </body>
 </html>
